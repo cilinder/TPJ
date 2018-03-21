@@ -1,4 +1,1 @@
-i := 0;
-a := 0;
-
-while i < n do {a := a + (i+1)*(i+1); i := i + 1}
+a + if 0 < 3 then a + 1 else b * b
