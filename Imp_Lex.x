@@ -25,7 +25,7 @@ $symb       = [\!\@\#\$\%\^\&\-\+\=\/\<\>\~\:\;\.\?\/\\\~\'\"\|\[\]]
     \=\= | \< | \+ | \- | \* | \&\& | \|\| | \:\=               {\s -> OP s}
     \!                                                          {\s -> UOP s}
     \( | \) | \; | \{ | \}                                      {\s -> PUNC s}
-    [$lower $upper][$lower $upper $digit]*                             {\s -> LOC s}
+    [$upper][$lower $upper $digit]*                             {\s -> LOC s}
     $symb+                                                      {\_ -> UNKNOWNSYM}
 
 

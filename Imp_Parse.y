@@ -47,7 +47,6 @@ import Imp_AbsSyntax
 
 
 -- precedence and associativity declarations, lowest precedence first
-
 --
 -- [[MAKE PRECEDENCE AND ASSOCIATIVITY DECLARATIONS HERE]]
 --
@@ -58,9 +57,6 @@ import Imp_AbsSyntax
 %nonassoc '~' '<' ':='
 %left '+' '-'
 %left '*'
-%left else
-%left do
-%left ';'
 
   
 %%
@@ -72,13 +68,15 @@ import Imp_AbsSyntax
 --
 
 
-Com :   loc ':=' AExp               {Assign ($1, $3)}
-    |   if BExp then Com else Com   {Cond ($2, $4, $6)}
-    |   Com ';' Com                 {Seq ($1, $3)}
+Com :   Com0                        {$1}
+    |   Com0 ';' Com                {Seq ($1, $3)}
+
+Com0 :  loc ':=' AExp               {Assign ($1, $3)}
     |   skip                        {Skip}
-    |   while BExp do Com           {While ($2, $4)}
+    |   while BExp do Com0          {While ($2, $4)}
+    |   if BExp then Com0 else Com0 {Cond ($2, $4, $6)}
     |   '{' Com '}'                 {$2}
-        
+
 
 AExp :  num                         {Num $1} 
     |   loc                         {Loc $1}
@@ -101,7 +99,6 @@ BExp :  boolean                     {Boolean $1}
   
 parseError :: [Token] -> a
 parseError _ = error "Imp parse error"
-
 
 
 }

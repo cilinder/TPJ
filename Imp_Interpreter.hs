@@ -1,6 +1,7 @@
 module Imp_Interpreter where
 import Imp_Lex
 import Imp_Parse
+import Imp_Parser
 import Imp_State
 import Imp_Evaluator
 

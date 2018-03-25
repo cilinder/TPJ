@@ -1,1 +1,2 @@
-a + if 0 < 3 then a + 1 else b * b
+a := 1;
+c := 1 + 1
